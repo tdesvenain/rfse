@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repository/!svn/ver/457/tdesvenain/rfse/buildout/templates
+END
+varnish.vcl.in
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repository/!svn/ver/457/tdesvenain/rfse/buildout/templates/varnish.vcl.in
+END
+haproxy.conf.in
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repository/!svn/ver/430/tdesvenain/rfse/buildout/templates/haproxy.conf.in
+END

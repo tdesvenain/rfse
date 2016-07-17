@@ -1,0 +1,13 @@
+bin
+develop-eggs
+parts
+products
+src
+tmp
+var
+
+.installed.cfg
+.mr.developer.cfg
+picked_versions.cfg
+
+*.tar.gz
