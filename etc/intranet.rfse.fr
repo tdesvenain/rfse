@@ -31,6 +31,7 @@ server {
 
     root /home/tdesvenain/nginx/www;
 
+    client_max_body_size 100M;
     location ~ /.well-known {
         # adress for let's encrypt process
         autoindex on;
