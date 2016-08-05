@@ -1,0 +1,41 @@
+
+server {
+        listen 80;
+        server_name intranet.heleneducourant.fr;
+        rewrite ^(.*) https://intranet.heleneducourant.fr$1 permanent;
+ }
+
+server {
+
+    listen 443 ssl;
+    server_name intranet.heleneducourant.fr;
+    access_log /home/tdesvenain/nginx/log/intranet.heleneducourant.fr.access.log;
+    error_log /home/tdesvenain/nginx/log/intranet.heleneducourant.fr.error.log;
+
+    ssl_protocols TLSv1.2;
+    ssl_ciphers EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+    ssl_prefer_server_ciphers On;
+    ssl_certificate /etc/letsencrypt/live/intranet.heleneducourant.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/intranet.heleneducourant.fr/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/intranet.heleneducourant.fr/chain.pem;
+    ssl_session_cache shared:SSL:128m;
+    add_header Strict-Transport-Security "max-age=31557600; includeSubDomains";
+    ssl_stapling on;
+    ssl_stapling_verify on;
+
+    root /home/tdesvenain/nginx/www;
+
+    client_max_body_size 100M;
+    location ~ /.well-known {
+        # adress for let's encrypt process
+        autoindex on;
+        allow all;
+    }
+
+    # Note that domain name spelling in VirtualHostBase URL matters
+    # -> this is what Plone sees as the "real" HTTP request URL.
+    # "Plone" in the URL is your site id (case sensitive)
+    location / {
+          proxy_pass http://plone/VirtualHostBase/https/intranet.heleneducourant.fr:443/helene-intranet/VirtualHostRoot/;
+    }
+}
