@@ -11,3 +11,4 @@ var
 picked_versions.cfg
 
 *.tar.gz
+.idea
